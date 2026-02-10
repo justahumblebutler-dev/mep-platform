@@ -238,6 +238,129 @@ MEP_PATTERNS = {
         ],
         "type": "Equipment",
     },
+    
+    # NEW PATTERNS - Controllers & Sensors
+    "controller": {
+        # Building Controllers, DDC Controllers
+        "patterns": [
+            r'\b(?:BACnet|DDC|PLC|controller)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:controller|CONTROLLER)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:TSTAT|thermostat)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:VVT|VAV)[- ]?controller[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Controller",
+        "size_indicators": [
+            r'(\d+(?:\.\d+)?\s*(?:VOLTS|V|volts|v))',
+        ],
+    },
+    "sensor": {
+        # Temperature, Pressure, Flow Sensors
+        "patterns": [
+            r'\b(?:TEMP|Temperature)[- ]?sensor[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:PRES|Pressure)[- ]?sensor[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:FLOW|Flow)[- ]?meter[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:TD|Temperature)[- ]?sensor[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:DP|Differential)[- ]?pressure[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Sensor",
+    },
+    "damper": {
+        # Dampers (additional patterns)
+        "patterns": [
+            r'\b(?:VCD|Volume\s*Control\s*Damper)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:MD|Mixing\s*Damper)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:ED|Exhaust\s*Damper|OD|Outdoor\s*Damper)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:FD|Fire\s*Damper|Smoke\s*Damper)[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Damper",
+    },
+    "valve_control": {
+        # Control Valves
+        "patterns": [
+            r'\b(?:CV|Control\s*Valve)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:GV|Globe\s*Valve|GLV)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:BV|Ball\s*Valve|Ball)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:WV|Butterfly\s*Valve|BF|Butterfly)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:CHECK|CHECK\s*Valve)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:PRV|PRV-|Pressure\s*Relief)[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Control Valve",
+        "size_indicators": [
+            r'(\d+(?:\.\d+)?\s*(?:in|"|inch|IN|IPS|NPS)\b)',
+            r'(\d+(?:\.\d+)?\s*(?:mm|MM)\b)',
+            r'(\d+(?:\.\d+)?\s*(?:C[vv]|Cv)\b)',
+        ],
+    },
+    "pipe": {
+        # Pipe sizes
+        "patterns": [
+            r'\b(?:PIPE)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:\d+(?:[\./]\d+)?(?:"|in|inches|IPS|NPS))\b',
+        ],
+        "type": "Pipe",
+    },
+    "duct": {
+        # Ductwork
+        "patterns": [
+            r'\b(?:DUCT)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:RDD|Round\s*Duct)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:SD|Square\s*Duct|Square)[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Duct",
+    },
+    "panel": {
+        # Electrical Panels
+        "patterns": [
+            r'\b(?:EP|Electrical\s*Panel)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:MDP|Main\s*Distribution)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:LP|Lighting\s*Panel|Panelboard)[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Electrical Panel",
+    },
+    "transformer": {
+        # Transformers
+        "patterns": [
+            r'\b(?:XFMR|Transformer)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:TFR|TFR-)[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Transformer",
+        "size_indicators": [
+            r'(\d+(?:\.\d+)?\s*(?:KVA|kva|kVA))',
+            r'(\d+(?:\.\d+)?\s*(?:VOLTS|V|volts|v))',
+        ],
+    },
+    "exhaust_fan": {
+        # Exhaust Fans (bath, kitchen, general)
+        "patterns": [
+            r'\b(?:EF|Exhaust\s*Fan)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:BF|Bath\s*Fan|Bathroom)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:KF|Kitchen\s*Fan)[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Exhaust Fan",
+        "size_indicators": [
+            r'(\d+(?:,\d{3})?\s*(?:CFM|cfm|L/s|LS))',
+        ],
+    },
+    "heat_recovery": {
+        # Heat Recovery Units
+        "patterns": [
+            r'\b(?:HRU|Heat\s*Recovery)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:ERV|Energy\s*Recovery)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:HRV|Heat\s*Recovery\s*Ventilator)[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Heat Recovery Unit",
+        "size_indicators": [
+            r'(\d+(?:,\d{3})?\s*(?:CFM|cfm|L/s|LS))',
+        ],
+    },
+    "air_filter": {
+        # Air Filters
+        "patterns": [
+            r'\b(?:AF|Air\s*Filter)[- ]?(\d+[A-Z]?)\b',
+            r'\b(?:MF|Media\s*Filter)[- ]?(\d+[A-Z]?)\b',
+        ],
+        "type": "Air Filter",
+    },
 }
 
 # Specification Reference Patterns
@@ -391,24 +514,41 @@ def extract_equipment(text: str, page_num: int = 1) -> list:
 
 def calculate_confidence(context: str, tag: str, sizes: list) -> float:
     """Calculate confidence score for extracted equipment."""
-    base_confidence = 0.5
+    base_confidence = 0.3  # Lower base, need evidence to boost
     
     # Boost for size indicators
     if sizes:
-        base_confidence += 0.2
+        base_confidence += 0.25
     
     # Boost for spec references
-    if any(x in context.lower() for x in ['see', 'refer', 'spec', 'section', 'detail']):
-        base_confidence += 0.1
+    if any(x in context.lower() for x in ['see', 'refer', 'spec', 'section', 'detail', 'drawing']):
+        base_confidence += 0.15
     
-    # Boost for equipment-related context
-    equipment_keywords = ['supply', 'return', 'exhaust', 'fan', 'motor', 'filter', 'coil', 
-                          ' damper', 'heating', 'cooling', 'filter', 'motor', 'pump']
+    # Boost for complete tag format (AHU-1, not just AHU)
+    if re.match(r'^[A-Z]{2,5}[- ]?\d+[A-Z]?$', tag):
+        base_confidence += 0.15  # Well-formed tag
+    
+    # Boost for equipment-related context keywords
+    equipment_keywords = [
+        'supply', 'return', 'exhaust', 'fan', 'motor', 'filter', 'coil',
+        'damper', 'heating', 'cooling', 'pump', 'valve', 'sensor', 'controller',
+        'equipment', 'system', 'unit', 'package', 'rooftop', 'air', 'water',
+        'chilled', 'hot', 'condenser', 'evaporator', 'compressor',
+    ]
     keyword_count = sum(1 for kw in equipment_keywords if kw in context.lower())
-    base_confidence += min(0.2, keyword_count * 0.05)
+    base_confidence += min(0.2, keyword_count * 0.04)
+    
+    # Penalize if tag looks like random text (too short, no numbers)
+    if re.match(r'^[A-Z]{1,2}$', tag):
+        base_confidence -= 0.1  # Likely false positive
+    
+    # Penalize if in list of common false positives
+    false_positives = {'M', 'H', 'P', 'E', 'A', 'I', 'TO', 'IN', 'ON', 'OF'}
+    if tag in false_positives:
+        base_confidence = 0.1
     
     # Cap at 1.0
-    return min(1.0, base_confidence)
+    return max(0.0, min(1.0, base_confidence))
 
 
 def find_spec_sections(text: str) -> list:
