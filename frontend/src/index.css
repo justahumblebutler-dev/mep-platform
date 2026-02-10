@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* PDF Upload Zone */
+.upload-zone {
+  @apply border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-colors;
+}
+.upload-zone:hover {
+  @apply border-primary bg-primary/5;
+}
+.upload-zone.active {
+  @apply border-primary bg-primary/10;
+}
+
+/* Equipment Tag Styles */
+.equipment-tag {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+.tag-ahu { @apply bg-blue-100 text-blue-800; }
+.tag-rtu { @apply bg-indigo-100 text-indigo-800; }
+.tag-pump { @apply bg-green-100 text-green-800; }
+.tag-vav { @apply bg-purple-100 text-purple-800; }
+.tag-valve { @apply bg-yellow-100 text-yellow-800; }
+.tag-fixture { @apply bg-pink-100 text-pink-800; }
+.tag-default { @apply bg-gray-100 text-gray-800; }
+
+/* Confidence Badge */
+.confidence-high { @apply text-green-600; }
+.confidence-medium { @apply text-yellow-600; }
+.confidence-low { @apply text-red-600; }
+
+/* Delta Styles */
+.delta-added { @apply bg-green-50 border-l-4 border-green-500; }
+.delta-removed { @apply bg-red-50 border-l-4 border-red-500; }
+.delta-changed { @apply bg-yellow-50 border-l-4 border-yellow-500; }
