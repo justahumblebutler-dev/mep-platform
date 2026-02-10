@@ -247,22 +247,6 @@ SPEC_PATTERNS = [
     r'(?:see|refer\s*to|shown\s*on|detail)\s*(?:page|sheet|section|dwg|dwg\.|draw\.|fig\.|figure)\s*[:.]?\s*([A-Z]?[\d]+(?:[-/][\d]+)?)',
 ]
 
-# Size extraction patterns
-SIZE_PATTERNS = {
-    "cfm": r'(\d{1,3}(?:,\d{3})?(?:\.\d+)?\s*(?:CFM|cfm|L\/s|LS))',
-    "gpm": r'(\d+(?:\.\d+)?\s*(?:GPM|gpm|LPM|lpm))',
-    "ton": r'(\d+(?:\.\d+)?\s*(?:TON|ton|TONS|tons|TR|tr))',
-    "mbh": r'(\d+(?:,\d{3})*\s*(?:MBH|mbh|MMBH|mmbh|BTU\/hr|btu\/hr))',
-    "hp": r'(\d+(?:\.\d+)?\s*(?:HP|hp|kW|KW))',
-    "voltage": r'(\d{3}[-/]?\d{3}[vV]?)',
-    "size_inches": r'(\d+(?:\.\d+)?\s*(?:"|in|inch|IN|IPS|NPS)\b)',
-    "size_mm": r'(\d+(?:\.\d+)?\s*(?:mm|MM))',
-    "gallons": r'(\d{1,6}(?:,\d{3})?\s*(?:GAL|gal|gallons?))',
-    "temp": r'([+-]?\d+(?:\.\d+)?\s*°?[FfFCc])',
-    "pressure": r'(\d+(?:\.\d+)?\s*(?:PSI|psi|kPa|kPA|psig|PSIG))',
-    "rpm": r'(\d+(?:\.\d+)?\s*(?:RPM|rpm))',
-}
-
 
 def extract_text_from_pdf(pdf_path: str) -> dict:
     """Extract all text from a PDF using PyMuPDF."""
