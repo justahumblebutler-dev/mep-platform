@@ -40,7 +40,6 @@ SIZE_PATTERNS = {
     "temp": r'([+-]?\d+(?:\.\d+)?\s*°?[FfFCc])\b',
     "pressure": r'(\d+(?:\.\d+)?\s*(?:PSI|psi|kPa|kPA|psig|PSIG|bar))\b',
     "rpm": r'(\d+(?:\.\d+)?\s*(?:RPM|rpm))\b',
-    "flow": r'(\d+(?:\.\d+)?\s*(?:GPM|gpm|CFM|cfm|L\/s|LS))\b',
 }
 
 # MEP Equipment Patterns
