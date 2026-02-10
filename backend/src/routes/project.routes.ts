@@ -3,7 +3,6 @@
  */
 
 import { FastifyPluginAsync } from 'fastify';
-import { z } from 'zod';
 
 const projectRoutes: FastifyPluginAsync = async (fastify) => {
   // Mock projects store
@@ -26,12 +25,6 @@ const projectRoutes: FastifyPluginAsync = async (fastify) => {
   // Create project
   fastify.post('/', {
     preHandler: [fastify.authenticate],
-    schema: {
-      body: z.object({
-        name: z.string().min(1).max(255),
-        description: z.string().optional(),
-      }),
-    },
   }, async (request: any, reply) => {
     const { name, description } = request.body as any;
     const projectId = crypto.randomUUID();
@@ -74,12 +67,6 @@ const projectRoutes: FastifyPluginAsync = async (fastify) => {
   // Update project
   fastify.put('/:id', {
     preHandler: [fastify.authenticate],
-    schema: {
-      body: z.object({
-        name: z.string().min(1).max(255).optional(),
-        description: z.string().optional(),
-      }),
-    },
   }, async (request: any, reply) => {
     const { id } = request.params;
     const project = projects.get(id);

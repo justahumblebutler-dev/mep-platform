@@ -33,7 +33,20 @@ const authRoutes: FastifyPluginAsync = async (fastify) => {
   // Mock user DB for development
   const users = new Map();
   
-  fastify.post('/register', { schema: authSchema }, async (request, reply) => {
+  fastify.post('/register', {
+    schema: {
+      body: {
+        type: 'object',
+        required: ['email', 'password'],
+        properties: {
+          email: { type: 'string', format: 'email' },
+          password: { type: 'string', minLength: 12 },
+          name: { type: 'string', minLength: 2, maxLength: 100 },
+          firm: { type: 'string' },
+        },
+      },
+    },
+  }, async (request, reply) => {
     const { email, password, name, firm } = request.body as any;
     
     // Check if user exists (mock)
@@ -65,7 +78,18 @@ const authRoutes: FastifyPluginAsync = async (fastify) => {
     };
   });
   
-  fastify.post('/login', { schema: loginSchema }, async (request, reply) => {
+  fastify.post('/login', {
+    schema: {
+      body: {
+        type: 'object',
+        required: ['email', 'password'],
+        properties: {
+          email: { type: 'string', format: 'email' },
+          password: { type: 'string' },
+        },
+      },
+    },
+  }, async (request, reply) => {
     const { email, password } = request.body as any;
     
     const result = await login(email, password, async (email: string) => {
@@ -86,7 +110,16 @@ const authRoutes: FastifyPluginAsync = async (fastify) => {
   
   fastify.post('/change-password', {
     preHandler: [fastify.authenticate],
-    schema: changePasswordSchema,
+    schema: {
+      body: {
+        type: 'object',
+        required: ['currentPassword', 'newPassword'],
+        properties: {
+          currentPassword: { type: 'string' },
+          newPassword: { type: 'string', minLength: 12 },
+        },
+      },
+    },
   }, async (request: any, reply) => {
     const { currentPassword, newPassword } = request.body as any;
     const userId = request.user.userId;
