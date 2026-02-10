@@ -10,6 +10,7 @@ import authRoutes from './routes/auth.routes.js';
 import uploadRoutes from './routes/upload.routes.js';
 import takeoffRoutes from './routes/takeoff.routes.js';
 import projectRoutes from './routes/project.routes.js';
+import equivalencyRoutes from './routes/equivalency.routes.js';
 
 // Configuration
 const PORT = parseInt(process.env.PORT || '3000', 10);
@@ -48,6 +49,7 @@ async function setupApp(): Promise<void> {
   await app.register(uploadRoutes, { prefix: '/api/upload' });
   await app.register(takeoffRoutes, { prefix: '/api/takeoff' });
   await app.register(projectRoutes, { prefix: '/api/projects' });
+  await app.register(equivalencyRoutes, { prefix: '/api/equivalency' });
   
   // Health check
   app.get('/health', async () => {
